@@ -6,15 +6,20 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { ProductoComponent } from './components/producto/producto.component';
 import { FacturaComponent } from './components/factura/factura.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },    
-  { path: 'Categorias', component: CategoriasComponent},
-  { path: 'categoria/:id', component: CategoriaComponent},    
-  { path: 'producto', component: ProductoComponent},
-  { path: 'productos/:id', component: ProductosComponent},
-  { path: 'factura', component: FacturaComponent},
-  { path: '**', pathMatch:'full', redirectTo: 'home'}
+  { path: 'home', component: HomeComponent},    
+  { path: 'Categorias', component: CategoriasComponent,canActivate:[AuthGuard] },
+  { path: 'categoria/:id', component: CategoriaComponent,canActivate:[AuthGuard] },    
+  { path: 'producto', component: ProductoComponent,canActivate:[AuthGuard]},
+  { path: 'productos/:id', component: ProductosComponent,canActivate:[AuthGuard]},
+  { path: 'factura', component: FacturaComponent,canActivate:[AuthGuard]},
+  { path: 'registro', component: RegisterComponent},
+  { path: 'login', component: LoginComponent},
+  { path: '**', pathMatch:'full', redirectTo: 'registro'}
 ];
 
 @NgModule({

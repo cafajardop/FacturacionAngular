@@ -1,0 +1,68 @@
+<div class="limiter animated fadeInLeft">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-10">
+            <form   autocomplete="off" 
+                    (ngSubmit)="onSubmit(f)"
+                    #f="ngForm" 
+                    class="login100-form validate-form flex-sb flex-w">
+                
+                <span class="login100-form-avatar">
+                    <img src="../../../assets/images/avatar-01.png" alt="AVATAR">
+                </span>
+                
+                <span class="login100-form-title p-b-51">
+                    Crear nueva cuenta
+                </span>
+
+                <div class="wrap-input100 m-b-16">
+                    <input  class="input100" 
+                            type="text"
+                            name="username"
+                            [(ngModel)]="usuarioLogin.userName"
+                            required
+                            minlength="3"
+                            placeholder="username">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 m-b-16">
+                    <input  class="input100" 
+                            type="email" 
+                            name="email"
+                            [(ngModel)]="usuarioLogin.email"
+                            required
+                            minlength="6"
+                            placeholder="email">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 m-b-16">
+                    <input  class="input100" 
+                            type="password" 
+                            name="password"
+                            [(ngModel)]="usuarioLogin.Password"
+                            required
+                            minlength="6"
+                            placeholder="password">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-login100-form-btn mt-2">
+                    <button class="login100-form-btn" type="submit">
+                        Crear cuenta
+                    </button>
+                </div>
+
+                <div class="flex-sb-m w-full p-t-40 p-b-24">
+                    <div>
+                        <span>Tienes cuenta? </span>
+                        <a routerLink="/login" class="txt1" >
+                            Inicia Sesión
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

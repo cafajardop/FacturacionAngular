@@ -14,6 +14,8 @@ import { FacturaComponent } from './components/factura/factura.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { FormsModule } from '@angular/forms';
     ProductosComponent,
     CategoriasComponent,
     ProductoComponent,
-    FacturaComponent
+    FacturaComponent,    
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

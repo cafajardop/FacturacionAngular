@@ -26,5 +26,12 @@
         
       </ul>
     </div>
+    <div class="text text-right">
+      <span class="navbar-text right">
+        <button *ngIf="auth.estaAutenticado()" (click)="salir()" class="btn btn-danger">
+          Salir
+        </button>
+      </span>
+    </div>
   </nav>
   
