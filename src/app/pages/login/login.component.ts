@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         console.log(`Respuesta desde el componente ${resp}`);
         if(resp !== "0")
         {
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/home');          
         }else{
           Swal.fire({
             allowOutsideClick: false,
@@ -47,11 +47,6 @@ export class LoginComponent implements OnInit {
             text: 'Usuario o contraseña Invalido'
           });
         }
-        
-        // setTimeout(function () {
-        //   location.reload();
-        // }, 2000);
-
     }, (err)=>{
       console.log(err.error.error.message);
       Swal.fire({

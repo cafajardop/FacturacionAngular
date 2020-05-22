@@ -9,14 +9,18 @@ import { FacturaComponent } from './components/factura/factura.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ContactoComponent } from './pages/contacto/contacto.component';
+import { RespuestacontactoComponent } from './pages/respuestacontacto/respuestacontacto.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},    
+  { path: 'home', component: HomeComponent,canActivate:[AuthGuard] },    
   { path: 'Categorias', component: CategoriasComponent,canActivate:[AuthGuard] },
   { path: 'categoria/:id', component: CategoriaComponent,canActivate:[AuthGuard] },    
   { path: 'producto', component: ProductoComponent,canActivate:[AuthGuard]},
   { path: 'productos/:id', component: ProductosComponent,canActivate:[AuthGuard]},
   { path: 'factura', component: FacturaComponent,canActivate:[AuthGuard]},
+  { path: 'contacto', component: ContactoComponent},
+  { path: 'respuesta', component: RespuestacontactoComponent},
   { path: 'registro', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
   { path: '**', pathMatch:'full', redirectTo: 'registro'}

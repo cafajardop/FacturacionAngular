@@ -1,0 +1,68 @@
+<h1>Contactame <small>Deja tus datos</small></h1>
+<hr>
+
+<div class="row text-right">
+    <div class="col">
+        <button routerLink="/registro" class="btn btn-danger">
+            <i class="fa fa-arrow-left"></i>
+            Regresar
+        </button>
+    </div>
+</div>
+
+<div class="limiter animated fadeInLeft mt-5">
+    <div class="container-login100">                
+        <div class="wrap-login100 p-t-10">            
+        <form 
+            autocomplete="off" 
+            (ngSubmit)="send(f)"
+            #f="ngForm"    >
+            <div class="form-group">
+                <label class="mt-5">Deja tu email</label>
+                <input  type="email"
+                        class="form-control"
+                        [class.is-invalid]="NombreContacto.invalid && NombreContacto.touched"
+                        placeholder="correo@ejemplo.com"
+                        [(ngModel)] ="contacto.subject"
+                        ngModel
+                        name="email"
+                        required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                        #NombreContacto="ngModel">
+            <small *ngIf="NombreContacto.invalid && NombreContacto.touched" class="form-text text-danger">Debe ingresar un correo valido</small>      
+            </div>
+            <div class="form-group">
+                <label>Deja tu Telefono</label>
+                <input  type="text" 
+                        class="form-control"
+                        [class.is-invalid]="Telefono.invalid && Telefono.touched"
+                        [(ngModel)]="contacto.telefono"
+                        ngModel
+                        name="telefono"
+                        required
+                        minlength="7"
+                        #Telefono="ngModel"
+                        >
+            <small *ngIf="Telefono.invalid && Telefono.touched" class="form-text text-danger">Debe ingresar minimo 7 numeros</small>      
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Deja tus comentarios</label>
+                <textarea class="form-control"
+                          rows="3"
+                          [(ngModel)]="contacto.body"
+                          ngModel
+                          name="body"
+                          ></textarea>
+            </div>
+            <hr>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-info btn-block">
+                    <i class="fa fa-send"></i>
+                    Enviar
+                </button>
+            </div>
+            <br>
+        </form>
+        </div>
+    </div>
+</div>

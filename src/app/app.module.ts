@@ -16,6 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ContactoComponent } from './pages/contacto/contacto.component';
+import { RespuestacontactoComponent } from './pages/respuestacontacto/respuestacontacto.component';
+
 
 @NgModule({
   declarations: [
@@ -29,13 +35,17 @@ import { LoginComponent } from './pages/login/login.component';
     ProductoComponent,
     FacturaComponent,    
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ContactoComponent,
+    RespuestacontactoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

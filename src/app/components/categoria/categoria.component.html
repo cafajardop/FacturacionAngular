@@ -26,13 +26,18 @@
                 <small class="form-text text-muted" >Este campo es autogenerado</small>
             </div>
             <div class="form-group">
-                <label>Nombre</label>
-                <input  type="text" 
-                        class="form-control"
-                        [(ngModel)] = "categoria.NombreCategoria"
-                        name="nombre"
+                <label>Nombre Categoria</label>
+                <input  class="form-control"
+                        type="text" 
+                        [class.is-invalid]="NombreCategoria.invalid && NombreCategoria.touched"
                         placeholder="Nombre del Usuario"  
-                        required>
+                        [(ngModel)] = "categoria.NombreCategoria"
+                        ngModel
+                        name="nombre"
+                        required
+                        minlength="3"
+                        #NombreCategoria="ngModel">
+                 <small *ngIf="NombreCategoria.invalid && NombreCategoria.touched" class="form-text text-danger">Debe ingresar minimo 3 letras</small>      
             </div>            
             <div class="form-group">
                 <label>Estado</label>

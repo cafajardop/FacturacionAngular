@@ -1,54 +1,44 @@
+<h1>Bienvenido <small>Accede a tu cuenta</small></h1>
+<hr>
+
 <div class="limiter animated fadeInLeft">
     <div class="container-login100">
-        <div class="wrap-login100 p-t-10 p-b-20">
-            <form (ngSubmit)="login(f)" #f="ngForm" class="login100-form validate-form">
-                <span class="login100-form-title p-b-70">
-                    Bienvenido
-                </span>
-                <span class="login100-form-avatar">
-                    <img src="../../../assets/images/avatar-01.png" alt="AVATAR">
-                </span>
-
-                <div class="wrap-input100 validate-input m-t-85 m-b-35">
-                <span  *ngIf="f.submitted && f.controls['email'].errors" 
-                        class="text-danger animated fadeIn">El correo es obligatorio</span>
-                    <input  class="input100" 
-                            type="email"
-                            name="email"
-                            [(ngModel)]="usuarioLogin.email"
-                            required
-                            minlength="2"
-                            placeholder="email">
-                    <span class="focus-input100"></span>
+        <div class="wrap-login100 p-t-10">
+        <form (ngSubmit)="login(f)" #f="ngForm">
+                <span class="login100-form-avatar"><img src="../../../assets/images/avatar-01.png"></span>            
+            <div class="form-group">
+                <label>Email address</label>
+                <input  class="form-control" 
+                        type="email" 
+                        name="email" 
+                        placeholder="Enter email"
+                        [(ngModel)]="usuarioLogin.email" 
+                        required 
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                        >                
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input  class="form-control" 
+                        type="password" 
+                        name="password" 
+                        placeholder="Password"
+                        [(ngModel)]="usuarioLogin.Password" 
+                        required
+                        >
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-12 col-form-label">&nbsp;</label>
+                <div class="input-group col-md-12">
+                    <button type="submit" class="btn btn-info btn-block">Ingresar</button>
+                </div>                
+                <div class="input-group col-md-12 mt-3">
+                    <span> No tienes cuenta? </span>
+                     <a routerLink="/registro" class="txt1 ml-2"> Crear Cuenta </a>
                 </div>
-
-                <div class="wrap-input100 validate-input m-b-50">
-                    <span *ngIf="f.submitted && f.controls['password'].errors" class="text-danger animated fadeIn">Al menos 6 letras</span>
-                    <input  class="input100" 
-                            type="password" 
-                            name="password"
-                            [(ngModel)]="usuarioLogin.Password"
-                            required
-                            minlength="6"
-                            placeholder="Password">
-                    <span class="focus-input100" placeholder="Password"></span>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" type="submit">
-                        Login
-                    </button>
-                </div>
-
-                <div class="flex-sb-m w-full p-t-40 p-b-24">
-                    <div>
-                        <span> No tienes cuenta? </span>
-                        <a routerLink="/registro" class="txt1" >
-                            Crear Cuenta
-                        </a>
-                    </div>
-                </div>
-            </form>
-        </div>
+              </div>
+        </form>
+    </div>
     </div>
 </div>
