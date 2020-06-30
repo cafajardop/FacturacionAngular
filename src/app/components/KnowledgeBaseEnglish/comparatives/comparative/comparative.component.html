@@ -1,0 +1,108 @@
+<!-- Si existe el heroe muestre el mensaje si no muestre nombre del heroe -->
+<h1 >Comparative <small>Create</small></h1>
+<hr>
+
+<div class="row text-right">
+    <div class="col">
+        <button routerLink="/comparatives" class="btn btn-danger">
+            <i class="fa fa-arrow-left"></i>
+            Regresar
+        </button>
+    </div>
+</div>
+
+<div class="row animate__fadeIn">
+    <div class="col">
+        <form autocomplete="off" (ngSubmit)="guardar(f)"
+                #f="ngForm">
+            <div class="form-group">
+                <label>ID Database</label>
+                <input  type="text" 
+                        class="form-control" 
+                        disabled="disabled" 
+                        [(ngModel)] = "comparative.idAdjetive"
+                        name="id"
+                        placeholder="ID">
+                <small class="form-text text-muted" >Este campo es autogenerado</small>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-3">
+                    <label >Adjetive</label>
+                    <input  class="form-control" 
+                            type="text" 
+                            placeholder="Example angry"  
+                            [class.is-invalid]="NombreAdjetivo.invalid && NombreAdjetivo.touched"
+                            [(ngModel)] = "comparative.Adjetive"
+                            ngModel
+                            name="adjetivo"
+                            required
+                            minlength="3"
+                            #NombreAdjetivo="ngModel">
+                <small *ngIf="NombreAdjetivo.invalid && NombreAdjetivo.touched" class="form-text text-danger">Debe ingresar minimo 3 letras</small>      
+                </div>
+                <div class="form-group col-sm-3">
+                    <label >Comparative</label>
+                    <input  class="form-control" 
+                            type="text" 
+                            placeholder="Example angrier"  
+                            [class.is-invalid]="NombreComparativo.invalid && NombreComparativo.touched"
+                            [(ngModel)] = "comparative.Comparativo"
+                            ngModel
+                            name="comparativo"
+                            required
+                            minlength="3"
+                            #NombreComparativo="ngModel">
+                <small *ngIf="NombreComparativo.invalid && NombreComparativo.touched" class="form-text text-danger">Debe ingresar minimo 3 letras</small>      
+                </div>
+                <div class="form-group col-sm-3">
+                    <label >Superlative</label>
+                    <input  class="form-control" 
+                            type="text" 
+                            placeholder="Example angriest"  
+                            [class.is-invalid]="NombreSuperlativo.invalid && NombreSuperlativo.touched"
+                            [(ngModel)] = "comparative.Superlative"
+                            ngModel
+                            name="superlativo"
+                            required
+                            minlength="3"
+                            #NombreSuperlativo="ngModel">
+                <small *ngIf="NombreSuperlativo.invalid && NombreSuperlativo.touched" class="form-text text-danger">Debe ingresar minimo 3 letras</small>      
+                </div>
+                <div class="form-group col-sm-3">
+                    <label >Spanish</label>
+                    <input  class="form-control" 
+                            type="text" 
+                            placeholder="Ejemplo Enojado"
+                            [class.is-invalid]="NombreSpanish.invalid && NombreSpanish.touched"
+                            [(ngModel)] = "comparative.Spanish"
+                            ngModel
+                            name="spanish"
+                            required
+                            minlength="3"
+                            #NombreSpanish="ngModel">
+                <small *ngIf="NombreSpanish.invalid && NombreSpanish.touched" class="form-text text-danger">Debe ingresar minimo 3 letras</small>      
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Prayer</label>
+                <textarea  type="text" 
+                        class="form-control" 
+                        [(ngModel)] = "comparative.Questions"
+                        ngModel
+                        name="question"
+                        placeholder="I think the portions were bigger than they were last time.">
+                 </textarea>
+            </div>
+            <hr>
+            <div class="form-group text-center">
+                <button type="submit"
+                        class="btn btn-primary w-25">
+                        <i class="fa fa-save"></i>
+                        Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

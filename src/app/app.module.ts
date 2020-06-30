@@ -21,6 +21,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { RespuestacontactoComponent } from './pages/respuestacontacto/respuestacontacto.component';
+import { ComparativesComponent } from './components/KnowledgeBaseEnglish/comparatives/comparatives.component';
+import { SpeakingComponent } from './components/KnowledgeBaseEnglish/speaking/speaking.component';
+import { ComparativeComponent } from './components/KnowledgeBaseEnglish/comparatives/comparative/comparative.component';
+
 
 
 @NgModule({
@@ -37,7 +41,11 @@ import { RespuestacontactoComponent } from './pages/respuestacontacto/respuestac
     RegisterComponent,
     LoginComponent,
     ContactoComponent,
-    RespuestacontactoComponent
+    RespuestacontactoComponent,
+    ComparativesComponent,
+    SpeakingComponent,
+    ComparativeComponent
+    
   ],
   imports: [
     BrowserModule,

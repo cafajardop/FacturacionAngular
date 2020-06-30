@@ -11,13 +11,20 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { RespuestacontactoComponent } from './pages/respuestacontacto/respuestacontacto.component';
+import { ComparativesComponent } from './components/KnowledgeBaseEnglish/comparatives/comparatives.component';
+import { SpeakingComponent } from './components/KnowledgeBaseEnglish/speaking/speaking.component';
+import { ComparativeComponent } from './components/KnowledgeBaseEnglish/comparatives/comparative/comparative.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent,canActivate:[AuthGuard] },    
   { path: 'Categorias', component: CategoriasComponent,canActivate:[AuthGuard] },
   { path: 'categoria/:id', component: CategoriaComponent,canActivate:[AuthGuard] },    
-  { path: 'producto', component: ProductoComponent,canActivate:[AuthGuard]},
-  { path: 'productos/:id', component: ProductosComponent,canActivate:[AuthGuard]},
+  // { path: 'producto', component: ProductoComponent,canActivate:[AuthGuard]},
+  // { path: 'productos/:id', component: ProductosComponent,canActivate:[AuthGuard]},
+  { path: 'comparatives', component: ComparativesComponent,canActivate:[AuthGuard]},
+  { path: 'comparative/:id', component: ComparativeComponent,canActivate:[AuthGuard]},
+  { path: 'speaking', component: SpeakingComponent,canActivate:[AuthGuard]},
+  { path: 'speaking/:id', component: SpeakingComponent,canActivate:[AuthGuard]},
   { path: 'factura', component: FacturaComponent,canActivate:[AuthGuard]},
   { path: 'contacto', component: ContactoComponent},
   { path: 'respuesta', component: RespuestacontactoComponent},
