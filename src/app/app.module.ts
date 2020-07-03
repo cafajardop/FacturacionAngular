@@ -27,6 +27,7 @@ import { ComparativeComponent } from './components/KnowledgeBaseEnglish/comparat
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,7 @@ import { ComparativeComponent } from './components/KnowledgeBaseEnglish/comparat
     RespuestacontactoComponent,
     ComparativesComponent,
     SpeakingComponent,
-    ComparativeComponent
+    ComparativeComponent,
     
   ],
   imports: [
@@ -53,7 +54,8 @@ import { ComparativeComponent } from './components/KnowledgeBaseEnglish/comparat
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

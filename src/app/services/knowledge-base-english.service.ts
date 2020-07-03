@@ -20,6 +20,11 @@ export class KnowledgeBaseEnglishService {
     return this.http.get(`${url}${filter}`);
   }
 
+  GetFindComparativeID(filterId: string) {
+    let url = URL_SERVICIOS + '/Question/GetFindComparativeID?filter=';
+    return this.http.get(`${url}${filterId}`);
+  }
+
   UpdateComparative( user: CompatariveModel){
     let url = URL_SERVICIOS + '/Comparatives/UpdateComparative';
     return this.http.put(`${url}`, user);

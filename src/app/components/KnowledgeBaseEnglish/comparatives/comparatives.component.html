@@ -16,7 +16,7 @@
         </button>
     </div>
 </div>
-<table class="table mt-3 animate__hinge">
+<table id="excel-table" class="table mt-3 animate__hinge">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
@@ -39,15 +39,12 @@
             <td>{{comparative.Superlative}}</td>
             <td>{{comparative.Spanish}}</td>
             <td>
-                <button 
-                    (click)="updateComparative(comparative)" 
-                    class="btn btn-info mr-1"
-                    data-toggle="modal"
-                    data-target="#myModal"
-                    >
+                <button (click)="updateComparative(comparative)" class="btn btn-info mr-1" data-toggle="modal"
+                    data-target="#myModal">
                     <i class="fa fa-pencil"></i>
                 </button>
-                <button class="btn btn-success mr-1" [routerLink]="['/comparative',comparative.idAdjetive]">
+                <button (click)="getFindComparativeID(comparative.idAdjetive)" class="btn btn-success mr-1"
+                    data-toggle="modal" data-target="#myModalQuestions">
                     <i class="fa fa-eye"></i>
                 </button>
                 <button class="btn btn-danger">
@@ -58,9 +55,17 @@
     </tbody>
 </table>
 <div>
-    <pagination-controls id="listing_pagination" maxSize="10" directionLinks="true" (pageChange)="page = $event">
-    </pagination-controls>
+    <div>
+        <pagination-controls id="listing_pagination" maxSize="10" directionLinks="true" (pageChange)="page = $event"> </pagination-controls>
+        <button class="btn btn-success float-right" (click)="exportexcel()">
+            Descargar Excel
+        </button>
+    </div>
 </div>
+
+
+
+
 
 <div *ngIf="cargando" class="alert alert-info text-center mt-5 animated fadeIn faster">
     <h4 class="alert-heading">Cargando</h4>
@@ -84,107 +89,102 @@
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
-            <form (ngSubmit)="guardar(f)" 
-            #f="ngForm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Update Comparative</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
+            <form (ngSubmit)="guardar(f)" #f="ngForm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Comparative</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
                         <div class="form-group">
                             <label>ID Database</label>
-                            <input 
-                                class="form-control" 
-                                type="text" 
-                                placeholder="ID"
-                                [ngModel] ="comparative.idAdjetive"
-                                ngModel
-                                name="idAdjetive"
-                                disabled="disabled"
-                                >
+                            <input class="form-control" type="text" placeholder="ID" [ngModel]="comparative.idAdjetive"
+                                ngModel name="idAdjetive" disabled="disabled">
                             <small class="form-text text-muted">Este campo es autogenerado</small>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label>Adjetive</label>
-                                <input  class="form-control"
-                                        type="text" 
-                                        [class.is-invalid]="NombreAdjetivo.invalid && NombreAdjetivo.touched"
-                                        placeholder="Nombre Adjetivo"  
-                                        [ngModel] = "comparative.Adjetive"
-                                        ngModel
-                                        name="Adjetive"
-                                        required
-                                        minlength="3"
-                                        #NombreAdjetivo="ngModel">
-                                <small *ngIf="NombreAdjetivo.invalid && NombreAdjetivo.touched" class="form-text text-danger">Debe ingresar minimo 3 letras</small>
+                                <input class="form-control" type="text"
+                                    [class.is-invalid]="NombreAdjetivo.invalid && NombreAdjetivo.touched"
+                                    placeholder="Nombre Adjetivo" [ngModel]="comparative.Adjetive" ngModel
+                                    name="Adjetive" required minlength="3" #NombreAdjetivo="ngModel">
+                                <small *ngIf="NombreAdjetivo.invalid && NombreAdjetivo.touched"
+                                    class="form-text text-danger">Debe ingresar minimo 3 letras</small>
                             </div>
-                            <div class="form-group col-sm-6">    
+                            <div class="form-group col-sm-6">
                                 <label>Comparative</label>
-                                <input  class="form-control"
-                                        type="text" 
-                                        [class.is-invalid]="NombreComparative.invalid && NombreComparative.touched"
-                                        placeholder="Nombre Comparative"  
-                                        [ngModel] = "comparative.Comparativo"
-                                        ngModel
-                                        name="Comparativo"
-                                        required
-                                        minlength="3"
-                                        #NombreComparative="ngModel">
-                                <small *ngIf="NombreComparative.invalid && NombreComparative.touched" class="form-text text-danger">Debe ingresar minimo 3 letras</small>      
-                            </div>  
+                                <input class="form-control" type="text"
+                                    [class.is-invalid]="NombreComparative.invalid && NombreComparative.touched"
+                                    placeholder="Nombre Comparative" [ngModel]="comparative.Comparativo" ngModel
+                                    name="Comparativo" required minlength="3" #NombreComparative="ngModel">
+                                <small *ngIf="NombreComparative.invalid && NombreComparative.touched"
+                                    class="form-text text-danger">Debe ingresar minimo 3 letras</small>
+                            </div>
                             <div class="form-group col-sm-6">
                                 <label>Superlative</label>
-                                <input  class="form-control"
-                                        type="text" 
-                                        [class.is-invalid]="NombreSuperlative.invalid && NombreSuperlative.touched"
-                                        placeholder="Nombre Superlative"  
-                                        [ngModel] = "comparative.Superlative"
-                                        ngModel
-                                        name="Superlative"
-                                        required
-                                        minlength="3"
-                                        #NombreSuperlative="ngModel">
-                                <small *ngIf="NombreSuperlative.invalid && NombreSuperlative.touched" class="form-text text-danger">Debe ingresar minimo 3 letras</small>      
+                                <input class="form-control" type="text"
+                                    [class.is-invalid]="NombreSuperlative.invalid && NombreSuperlative.touched"
+                                    placeholder="Nombre Superlative" [ngModel]="comparative.Superlative" ngModel
+                                    name="Superlative" required minlength="3" #NombreSuperlative="ngModel">
+                                <small *ngIf="NombreSuperlative.invalid && NombreSuperlative.touched"
+                                    class="form-text text-danger">Debe ingresar minimo 3 letras</small>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>Spanish</label>
-                                <input  class="form-control"
-                                        type="text" 
-                                        [class.is-invalid]="NombreSpanish.invalid && NombreSpanish.touched"
-                                        placeholder="Nombre Spanish"  
-                                        [ngModel] = "comparative.Spanish"
-                                        ngModel
-                                        name="Spanish"
-                                        required
-                                        minlength="3"
-                                        #NombreSpanish="ngModel">
-                                <small *ngIf="NombreSpanish.invalid && NombreSpanish.touched" class="form-text text-danger">Debe ingresar minimo 3 letras</small>      
+                                <input class="form-control" type="text"
+                                    [class.is-invalid]="NombreSpanish.invalid && NombreSpanish.touched"
+                                    placeholder="Nombre Spanish" [ngModel]="comparative.Spanish" ngModel name="Spanish"
+                                    required minlength="3" #NombreSpanish="ngModel">
+                                <small *ngIf="NombreSpanish.invalid && NombreSpanish.touched"
+                                    class="form-text text-danger">Debe ingresar minimo 3 letras</small>
                             </div>
-                        </div>    
-    
+                        </div>
+
                         <div class="form-group">
                             <label>Prayer</label>
-                            <textarea class="form-control"
-                                name = "Questions" 
-                                placeholder = "Your message" 
-                                ngModel>
+                            <textarea class="form-control" name="Questions" placeholder="Your message" ngModel>
                             </textarea>
-                        </div>  
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-success">
+                            <i class="fa fa-save"></i>
+                            <span> Actualizar </span>
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button 
-                    type="submit" 
-                    class="btn btn-outline-success">
-                    <i class="fa fa-save"></i>
-                        <span> Actualizar </span>
-                    </button>
-                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
-                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Table Id Questions-->
+
+<div id="myModalQuestions" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">{{name}}</h2>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-        </form>
-    
+            <!-- body -->
+            <div class="modal-body">
+                <ul *ngFor="let question of questions">
+                    <li>{{question.Questions}}</li>
+                </ul>
+            </div>
+            <!-- footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
         </div>
     </div>
 </div>
